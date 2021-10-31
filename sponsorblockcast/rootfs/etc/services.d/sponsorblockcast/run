@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck disable=SC2191
+# ==============================================================================
+# Home Assistant Community Add-on: Grafana
+# Runs the sponsorblockcast
+# ==============================================================================
+declare name
+declare value
+
+bashio::log.info 'Starting sponsorblockcast...'
+
+# Load custom environment variables
+for var in $(bashio::config 'env_vars|keys'); do
+    name=$(bashio::config "env_vars[${var}].name")
+    value=$(bashio::config "env_vars[${var}].value")
+    bashio::log.info "Setting ${name} to ${value}"
+    export "${name}=${value}"
+done
+
+# Run sponsorblockcast
+exec /usr/bin/sponsorblockcast.sh
