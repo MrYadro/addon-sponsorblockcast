@@ -14,4 +14,4 @@ configuration:
     description: YouTube API key for fallback video identification (required on some Chromecast devices)
   debug:
     name: Debug
-    description: Enables debbuging
+    description: Enables debbugging

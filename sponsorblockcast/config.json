@@ -1,6 +1,6 @@
 {
     "name": "sponsorblockcast",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "slug": "sponsorblockcast",
     "description": "A POSIX shell script that skips sponsored Youtube content on all local Chromecasts",
     "url": "https://github.com/MrYadro/addon-sponsorblockcast",
