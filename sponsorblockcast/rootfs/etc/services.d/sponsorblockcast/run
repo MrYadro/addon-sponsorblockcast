@@ -14,4 +14,4 @@ SBCYOUTUBEAPIKEY=$(bashio::config 'youtube_api_key')
 SBCDEBUG=$(bashio::config 'debug')
 
 # Run sponsorblockcast
-exec /usr/bin/sponsorblockcast.sh
+exec env SBCPOLLINTERVAL="${SBCPOLLINTERVAL}" SBCSCANINTERVAL="${SBCSCANINTERVAL}" SBCCATEGORIES="${SBCCATEGORIES}" SBCYOUTUBEAPIKEY="${SBCYOUTUBEAPIKEY}" SBCDEBUG="${SBCDEBUG}" /usr/bin/sponsorblockcast.sh
