@@ -9,19 +9,7 @@ The script will scan for all Chromecasts on the LAN, and launches a process for 
 Add `https://github.com/MrYadro/addon-sponsorblockcast` as addon repository
 
 ## Configuration
-```
-env_vars:
-  - name: SBCYOUTUBEAPIKEY
-    value: YOUR_API_KEY
-  - name: SBCDEBUG
-    value: 'true'
-```
-You can configure the following parameters by setting the appropriate environment values via addon config:
-* `SBCPOLLINTERVAL` - Time to wait between each polling of the Chromecasts' status (default=`1`)
-* `SBCSCANINTERVAL` - Time to wait between each scan for available Chromecast (default=`300`)
-* `SBCDIR` - Directory where temporary files are stored (default=`/tmp/sponsorblockcast`)
-* `SBCCATEGORIES` - Space-separated SponsorBlock categories to skip, see [category list](https://github.com/ajayyy/SponsorBlock/blob/master/config.json.example) (default=`sponsor`)
-* `SBCYOUTUBEAPIKEY` - [YouTube API key](https://developers.google.com/youtube/registering_an_application) for fallback video identification (required on some Chromecast devices).
+Via addon config
 
 ## Differences from CastBlock
 * Regular scans to find new Chromecasts while the script is running
