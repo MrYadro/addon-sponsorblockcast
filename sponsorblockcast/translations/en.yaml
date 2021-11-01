@@ -1,0 +1,14 @@
+---
+configuration:
+  poll_interval:
+    name: Poll interval
+    description: Time to wait between each polling of the Chromecasts' status
+  scan_interval:
+    name: Scan interval
+    description: Time to wait between each scan for available Chromecast
+  categories:
+    name: Categories
+    description: Space-separated SponsorBlock categories to skip, see category list
+  youtube_api_key:
+    name: YouTube API key
+    description: YouTube API key for fallback video identification (required on some Chromecast devices).

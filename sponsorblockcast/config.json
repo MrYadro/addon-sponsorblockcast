@@ -1,22 +1,23 @@
 {
     "name": "sponsorblockcast",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "slug": "sponsorblockcast",
     "description": "A POSIX shell script that skips sponsored Youtube content on all local Chromecasts",
     "url": "https://github.com/MrYadro/addon-sponsorblockcast",
     "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
     "startup": "services",
     "options": {
-      "env_vars": []
+      "poll_interval": 1,
+      "scan_interval": 300,
+      "categories": "sponsor",
+      "youtube_api_key": "API_KEY"
     },
     "boot": "auto",
     "schema": {
-      "env_vars": [
-        {
-          "name": "match(^SBC([A-Z0-9_])+$)",
-          "value": "str"
-        }
-      ]
+      "poll_interval": "int",
+      "scan_interval": "int",
+      "categories": "str",
+      "youtube_api_key": "str"
     },
     "host_network": true
   }
