@@ -11,6 +11,7 @@ SBCPOLLINTERVAL=$(bashio::config 'poll_interval')
 SBCSCANINTERVAL=$(bashio::config 'scan_interval')
 SBCCATEGORIES=$(bashio::config 'categories')
 SBCYOUTUBEAPIKEY=$(bashio::config 'youtube_api_key')
+SBCDEBUG=$(bashio::config 'debug')
 
 # Run sponsorblockcast
 exec /usr/bin/sponsorblockcast.sh

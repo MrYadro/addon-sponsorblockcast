@@ -11,4 +11,7 @@ configuration:
     description: Space-separated SponsorBlock categories to skip, see category list
   youtube_api_key:
     name: YouTube API key
-    description: YouTube API key for fallback video identification (required on some Chromecast devices).
+    description: YouTube API key for fallback video identification (required on some Chromecast devices)
+  debug:
+    name: Debug
+    description: Enables debbuging
