@@ -60,7 +60,7 @@ watch () {
   uuid=$1
   go-chromecast watch -u "$uuid" --interval "$SBCPOLLINTERVAL" \
   | while read -r status; do
-    if echo "$status" | grep -q "YouTube (PLAYING), title="
+    if echo "$status" | grep -q "YouTube (PLAYING)"
     then
       video_id=$(echo "$status" | grep -oP "id=\"\K[^\"]+")
 
@@ -88,6 +88,13 @@ watch () {
         done
       fi
 
+    fi
+
+    supported_cmd=$(echo "$status" | grep -oP "\"supportedMediaCommands\":\K[0-9]+")
+    if [ -n "$supported_cmd" ] && [ $(( supported_cmd & 0x2 )) -eq $(( 0x0 )) ]; then
+      #Ad is skippable
+      echo "Skipping skippable ad"
+      go-chromecast -u "$uuid" skipad
     fi
   done;
 }
