@@ -12,7 +12,7 @@ ARG BUILD_REPOSITORY
 ARG BUILD_VERSION
 
 RUN apk --no-cache add jq bc grep curl wget
-RUN GC_URL=`wget https://api.github.com/repos/vishen/go-chromecast/releases/latest -O - | jq -r '.assets[].browser_download_url' | grep linux_${BUILD_ARCH}`
+RUN GC_URL=`wget https://api.github.com/repos/vishen/go-chromecast/releases/latest -O - | jq -r '.assets[].browser_download_url' | grep linux_armv7`
 RUN wget $GC_URL -O /root/go-chromecast.tgz
 RUN tar xzf /root/go-chromecast.tgz -C /usr/bin
 RUN rm -rf /root/*
