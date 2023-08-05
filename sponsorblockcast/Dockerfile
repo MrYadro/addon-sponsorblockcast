@@ -16,7 +16,8 @@ ARG BUILD_VERSION
 ENV CHROMECASTGOVERSION=v0.3.1
 
 RUN apk --no-cache add jq bc grep curl \
-    && GC_URL=`wget https://api.github.com/repos/vishen/go-chromecast/releases/tags/${CHROMECASTGOVERSION} -O - | jq -r '.assets[].browser_download_url' | grep ${TARGETOS}_${TARGETARCH}${TARGETVARIANT}` \
+    && if [ "$BUILD_ARCH" = "aarch64" ] ; then GC_URL=`wget https://api.github.com/repos/vishen/go-chromecast/releases/tags/${CHROMECASTGOVERSION} -O - | jq -r '.assets[].browser_download_url' | grep linux_arm64` ; else GC_URL=`wget https://api.github.com/repos/vishen/go-chromecast/releases/tags/${CHROMECASTGOVERSION} -O - | jq -r '.assets[].browser_download_url' | grep linux_${BUILD_ARCH}` ; fi \
+    && wget $GC_URL \
     && wget $GC_URL -O /root/go-chromecast.tgz \
     && tar xzf /root/go-chromecast.tgz -C /usr/bin \
     && rm -rf /root/* \
