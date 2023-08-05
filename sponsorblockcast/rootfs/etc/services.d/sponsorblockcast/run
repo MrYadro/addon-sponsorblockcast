@@ -1,8 +1,7 @@
 #!/usr/bin/with-contenv bashio
-# shellcheck disable=SC2191
 # ==============================================================================
-# Home Assistant Community Add-on: sponsorblockcast
-# Runs the sponsorblockcast
+# Start the example service
+# s6-overlay docs: https://github.com/just-containers/s6-overlay
 # ==============================================================================
 bashio::log.info 'Starting sponsorblockcast...'
 

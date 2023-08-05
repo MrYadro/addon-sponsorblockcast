@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:13.2.2
+ARG BUILD_FROM=ghcr.io/hassio-addons/base:14.0.7
 # hadolint ignore=DL3006
 FROM ${BUILD_FROM}
 
@@ -13,12 +13,14 @@ ARG BUILD_REF
 ARG BUILD_REPOSITORY
 ARG BUILD_VERSION
 
-RUN apk --no-cache add jq bc grep curl wget
-RUN GC_URL=`wget https://api.github.com/repos/vishen/go-chromecast/releases/latest -O - | jq -r '.assets[].browser_download_url' | grep linux_"${BUILD_ARCH}"`
-RUN wget "$GC_URL" -O /root/go-chromecast.tgz
-RUN tar xzf /root/go-chromecast.tgz -C /usr/bin
-RUN rm -rf /root/*
-RUN chmod +x /usr/bin/go-chromecast
+ENV CHROMECASTGOVERSION=v0.3.1
+
+RUN apk --no-cache add jq bc grep curl \
+    && GC_URL=`wget https://api.github.com/repos/vishen/go-chromecast/releases/tags/${CHROMECASTGOVERSION} -O - | jq -r '.assets[].browser_download_url' | grep ${TARGETOS}_${TARGETARCH}${TARGETVARIANT}` \
+    && wget $GC_URL -O /root/go-chromecast.tgz \
+    && tar xzf /root/go-chromecast.tgz -C /usr/bin \
+    && rm -rf /root/* \
+    && chmod +x /usr/bin/go-chromecast
 
 ENV SBCPOLLINTERVAL 1
 ENV SBCSCANINTERVAL 300
